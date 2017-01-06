@@ -10,4 +10,6 @@ public interface ItemTouchAdapterCallback {
     *2.刷新recycle
      */
     boolean onItemMove(int fromPosition, int toPosition);
+
+    void onItemSwipe(int toPosition);
 }

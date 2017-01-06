@@ -32,6 +32,7 @@ public class RecycleViewItemTouchCallback extends ItemTouchHelper.Callback{
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
         //侧滑
+        adapterCallback.onItemSwipe(viewHolder.getAdapterPosition());
     }
 
     @Override

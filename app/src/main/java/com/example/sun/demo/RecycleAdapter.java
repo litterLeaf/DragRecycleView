@@ -17,11 +17,12 @@ import java.util.List;
  */
 
 public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHold> implements ItemTouchAdapterCallback {
-   private List<MyEntity> list;
+    private List<MyEntity> list;
+
     private ItemStartDragListener itemStartDragListener;
 
     public RecycleAdapter(List<MyEntity> list, ItemStartDragListener itemStartDragListener) {
-        this.list= list;
+        this.list = list;
         this.itemStartDragListener = itemStartDragListener;
     }
 
@@ -34,13 +35,19 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
     @Override
     public void onBindViewHolder(final MyViewHold holder, int position) {
 //绑定数据
-        MyEntity myEntity= list.get(position);
-        holder.content.setText(myEntity.getContent()+position);
-        holder.item.setOnTouchListener(new View.OnTouchListener() {
+        MyEntity myEntity = list.get(position);
+        holder.content.setText(myEntity.getContent());
+        holder.reorder.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 itemStartDragListener.onStartDrag(holder);
                 return false;
+            }
+        });
+        holder.reorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemStartDragListener.onDeleteItem(holder);
             }
         });
 
@@ -57,21 +64,28 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
         *1.数据交换
         * 2.刷新RecycleView
          */
-        Collections.swap(list,fromPosition,toPosition);
-        notifyItemMoved(fromPosition,toPosition);
+        Collections.swap(list, fromPosition, toPosition);
+        notifyItemMoved(fromPosition, toPosition);
         return false;
+    }
+
+    @Override
+    public void onItemSwipe(int toPosition) {
+        list.remove(toPosition);
+        notifyItemRemoved(toPosition);
     }
 
     class MyViewHold extends RecyclerView.ViewHolder {
         public ImageView icon;
         public TextView content;
-        public LinearLayout item;
-
+        public TextView reorder;
+        public TextView delete;
         public MyViewHold(View itemView) {
             super(itemView);
             content = (TextView) itemView.findViewById(R.id.textView);
-            icon = (ImageView)itemView.findViewById(R.id.imageView);
-            item = (LinearLayout)itemView.findViewById(R.id.linear_item);
+            icon = (ImageView) itemView.findViewById(R.id.imageView);
+            reorder = (TextView) itemView.findViewById(R.id.reorder);
+            delete = (TextView) itemView.findViewById(R.id.delete);
         }
     }
 

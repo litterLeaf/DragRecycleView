@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements ItemStartDragList
 
         ItemTouchHelper.Callback callback = new RecycleViewItemTouchCallback(adapter);
         itemTouchHelper = new ItemTouchHelper(callback);
+//        itemTouchHelper.
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
     }
@@ -32,45 +33,36 @@ public class MainActivity extends AppCompatActivity implements ItemStartDragList
     private List<MyEntity> getDate() {
         List<MyEntity> list = new ArrayList<>();
         MyEntity myEntity1 = new MyEntity();
-        myEntity1.setContent("这是第");
+        myEntity1.setContent("A");
         MyEntity myEntity2 = new MyEntity();
-        myEntity2.setContent("这是第");
+        myEntity2.setContent("B");
         MyEntity myEntity3 = new MyEntity();
-        myEntity3.setContent("这是第");
+        myEntity3.setContent("C");
         MyEntity myEntity4 = new MyEntity();
-        myEntity4.setContent("这是第");
+        myEntity4.setContent("D");
         MyEntity myEntity5 = new MyEntity();
-        myEntity5.setContent("这是第");
+        myEntity5.setContent("E");
         MyEntity myEntity6 = new MyEntity();
-        myEntity6.setContent("这是第");
+        myEntity6.setContent("F");
         MyEntity myEntity7 = new MyEntity();
-        myEntity7.setContent("这是第");
+        myEntity7.setContent("G");
         MyEntity myEntity8 = new MyEntity();
-        myEntity8.setContent("这是第");
+        myEntity8.setContent("H");
         MyEntity myEntity9 = new MyEntity();
-        myEntity9.setContent("这是第");
+        myEntity9.setContent("I");
         MyEntity myEntity10 = new MyEntity();
-        myEntity10.setContent("这是第");
+        myEntity10.setContent("J");
         MyEntity myEntity11 = new MyEntity();
-        myEntity11.setContent("这是第");
+        myEntity11.setContent("K");
         MyEntity myEntity12 = new MyEntity();
-        myEntity12.setContent("这是第");
+        myEntity12.setContent("L");
         MyEntity myEntity13 = new MyEntity();
-        myEntity13.setContent("这是第");
+        myEntity13.setContent("M");
         MyEntity myEntity14 = new MyEntity();
-        myEntity14.setContent("这是第");
+        myEntity14.setContent("N");
         MyEntity myEntity15 = new MyEntity();
-        myEntity15.setContent("这是第");
-        MyEntity myEntity16 = new MyEntity();
-        myEntity16.setContent("这是第");
-        MyEntity myEntity17 = new MyEntity();
-        myEntity17.setContent("这是第");
-        MyEntity myEntity18 = new MyEntity();
-        myEntity18.setContent("这是第");
-        MyEntity myEntity19 = new MyEntity();
-        myEntity19.setContent("这是第");
-        MyEntity myEntity20 = new MyEntity();
-        myEntity20.setContent("这是第");
+        myEntity15.setContent("O");
+
 
         list.add(myEntity1);
         list.add(myEntity2);
@@ -87,11 +79,6 @@ public class MainActivity extends AppCompatActivity implements ItemStartDragList
         list.add(myEntity13);
         list.add(myEntity14);
         list.add(myEntity15);
-        list.add(myEntity16);
-        list.add(myEntity17);
-        list.add(myEntity18);
-        list.add(myEntity19);
-        list.add(myEntity20);
         return list;
 
     }
@@ -99,5 +86,10 @@ public class MainActivity extends AppCompatActivity implements ItemStartDragList
     @Override
     public void onStartDrag(RecyclerView.ViewHolder holder) {
         itemTouchHelper.startDrag(holder);
+    }
+
+    @Override
+    public void onDeleteItem(RecyclerView.ViewHolder holder) {
+        itemTouchHelper.startSwipe(holder);
     }
 }
