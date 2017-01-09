@@ -34,7 +34,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(final MyViewHold holder, int position) {
-//绑定数据
+    //绑定数据
         MyEntity myEntity = list.get(position);
         holder.content.setText(myEntity.getContent());
         holder.reorder.setOnTouchListener(new View.OnTouchListener() {
@@ -44,7 +44,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
                 return false;
             }
         });
-        holder.reorder.setOnClickListener(new View.OnClickListener() {
+        holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 itemStartDragListener.onDeleteItem(holder);

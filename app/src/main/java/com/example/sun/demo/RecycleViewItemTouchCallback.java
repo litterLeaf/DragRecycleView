@@ -18,7 +18,7 @@ public class RecycleViewItemTouchCallback extends ItemTouchHelper.Callback{
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         //callback的回调监听 判断有哪些动作  判断手指移动的方向 (left|right   up |down)
         int dragFlags = ItemTouchHelper.UP|ItemTouchHelper.DOWN;
-        int swipeFlags=ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT;
+        int swipeFlags=ItemTouchHelper.LEFT;
         return makeMovementFlags(dragFlags,swipeFlags);
     }
 
