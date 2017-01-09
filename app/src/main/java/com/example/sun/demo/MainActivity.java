@@ -87,9 +87,4 @@ public class MainActivity extends AppCompatActivity implements ItemStartDragList
     public void onStartDrag(RecyclerView.ViewHolder holder) {
         itemTouchHelper.startDrag(holder);
     }
-
-    @Override
-    public void onDeleteItem(RecyclerView.ViewHolder holder) {
-        itemTouchHelper.startSwipe(holder);
-    }
 }

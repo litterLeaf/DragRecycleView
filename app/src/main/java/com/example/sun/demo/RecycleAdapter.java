@@ -20,8 +20,11 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
     private List<MyEntity> list;
 
     private ItemStartDragListener itemStartDragListener;
+    private ItemTouchAdapterCallback callback;
+    private RecycleAdapter adapter;
 
     public RecycleAdapter(List<MyEntity> list, ItemStartDragListener itemStartDragListener) {
+        this.adapter = this;
         this.list = list;
         this.itemStartDragListener = itemStartDragListener;
     }
@@ -33,8 +36,8 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHold holder, int position) {
-    //绑定数据
+    public void onBindViewHolder(final MyViewHold holder, final int position) {
+        //绑定数据
         MyEntity myEntity = list.get(position);
         holder.content.setText(myEntity.getContent());
         holder.reorder.setOnTouchListener(new View.OnTouchListener() {
@@ -47,10 +50,9 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                itemStartDragListener.onDeleteItem(holder);
+                adapter.onItemDelect(position);
             }
         });
-
     }
 
     @Override
@@ -75,11 +77,18 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
         notifyItemRemoved(toPosition);
     }
 
+    @Override
+    public void onItemDelect(int toPosition) {
+        list.remove(toPosition);
+        notifyDataSetChanged();
+    }
+
     class MyViewHold extends RecyclerView.ViewHolder {
         public ImageView icon;
         public TextView content;
         public TextView reorder;
         public TextView delete;
+
         public MyViewHold(View itemView) {
             super(itemView);
             content = (TextView) itemView.findViewById(R.id.textView);

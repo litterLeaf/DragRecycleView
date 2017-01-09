@@ -10,5 +10,4 @@ public interface ItemStartDragListener {
 
     void onStartDrag(RecyclerView.ViewHolder holder);
 
-    void onDeleteItem(RecyclerView.ViewHolder holder);
 }

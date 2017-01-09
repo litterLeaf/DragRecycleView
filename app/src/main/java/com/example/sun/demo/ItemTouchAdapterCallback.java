@@ -12,4 +12,6 @@ public interface ItemTouchAdapterCallback {
     boolean onItemMove(int fromPosition, int toPosition);
 
     void onItemSwipe(int toPosition);
+
+    void onItemDelect(int toPosition);
 }
